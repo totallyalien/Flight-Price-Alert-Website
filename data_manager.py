@@ -73980,6 +73980,7 @@ airportlist={}
 class DataManager:
     def _init_(self):
       pass
+   
     def airportdata_dic(self):
       for i in x:
         airportlist[i["city"]]=[i["code"],i["state"],i["country"]]
@@ -73994,5 +73995,16 @@ class DataManager:
        self.from_code=airportlist[from_city][0]
        self.to_code=airportlist[to_city][0]
        return [self.from_code,self.to_code]
+
+    def name_to_iata_flight_specific(self,place):
+      for i in x:
+        if place in i["city"]:
+          return i["code"]
+          break
+        if place in i["name"]:
+          return i["code"]
+          break
+
+
 
 
