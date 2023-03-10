@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/alert.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link
+     rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+ </head>
+ <body>
+ </body>
+</html>    
+<title>Price Alert Remainder</title>
+</head>
+<body>
+<header class="navbar">
+    <div class="logo">
+        <h3>Total Alien</h3>
+    </div>
+  
+        
+    </ul>
+
+</header>
+<section class="body" >
+    <div class="container">
+        <h3 class="head" > Register here to get notified</h3>
+        {% block container %}
+        <h5 id="alert_message">
+            {{message}}
+        </h5>
+        {% endblock %}
+        <form  method="POST" onsubmit="process(event)">
+            <div class="content">
+            <label> <i class="fa-solid fa-phone"></i>  Phone number:</label>
+            <input type="tel" id="phone" name="number" placeholder="Eg : +91 XXXX">
+        </div>
+        <div class="content">
+            <label><i class="fa-solid fa-envelope"></i> Email id :</label>
+            <input type="email" name="email" id="" placeholder="@gmail.com">
+        </div>
+            <input type="submit" class="submit-btn" >
+        </form>
+    </div>
+  
+</section>
+<script src="/static/build/js"></script>
+</body>
+</html>
