@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: poppins;
+  }
+  .body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffff;
+   
+  
+  }
+  label{
+    display: block;
+  }
+
+  #phone{
+    width: 100% !important;
+  }
+  .content{
+    display: block;
+  
+  }
+  .navbar{
+    background-color: #2f3542;
+    text-align: center;
+    padding: 10px;
+  }
+  .logo{
+    font-weight: bold;
+    color: white;
+    letter-spacing: 3px;
+  }
+  
+  .content input{
+    display: block;
+    margin: 10px 0px ;
+    width: 100%;
+    padding: 6px 8px;
+    font-size: 0.9em;
+    border: 1px #2f3542 solid;
+    outline: none;
+  }
+  input #phone{
+    width: 100%;
+  }
+  .head{
+    margin-bottom:30px  ;
+    font-size: 1.6em;
+  }
+  .submit-btn {
+    background-color: #2f3542;
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 8px;
+  font-size: 0.9em;
+    margin-top: 30px;
+    border: none;
+    outline: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover{
+    background-color:tomato ;
+  }
+
+  #alert_message{
+    color: red;
+    text-align: center;
+  }
