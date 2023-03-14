@@ -3,48 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Test</title>
-    <link rel="stylesheet" href="index.css">
+
+
+    <title>Totally Alien : flight alert system</title>
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+    <link  href="static/index.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
+    </script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">  
+    </script>  
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
+<body class="body ">
     <div class="navbar">
         <div class="container">
             <a class="logo" href="index.html">Totally<span>Alien</span></a>
+            <i class="fa-solid fa-circle-half-stroke"></i>
         </div>
 
     </div>
+    
 
     <section class="search_section">
-        <div class="search_box">
+        <div class="search_box ">
+           
             <form method="POST" action="/">
-                <label>From</label>
-                <input type="text" id="from" name="from">
-                <label>To</label>
-                <input type="text" id="to" name="to">
-                <input type="date" if="date" name="date">
-                <input type="submit">
+                
+                <!-- <label>From</label> -->
+           
+                <input type="text" id="from" name="from" placeholder="From">
+                <!-- <label>To</label> -->
+                <input type="text" id="to" name="to" placeholder="To">
+                <input type="date" if="date" name="date" placeholder="Date">
+                <input type="submit" value="Search Flights" class="search-btn">
                 
 
             </form>
 
         </div>
-
-            <h1 class="rem">Results found ...</h1>
-            <div class="results">
-                <h3>flight no:xxx</h5>
-                    <h5 class="time res">11.45am -> 12:50pm</h5>
-                    <h5 class="price res">$300</h5>
+        <h1 class="rem hidden">Results found <i class="fa-solid fa-circle-check"></i>  . . .</h1>
+        <div class="details">
+           
+            {% block container %}
+            
+                {% for result in search_data %}
+               <div class="flight-res ">
+                    <h3 class="flight-no">Flight no: {{result["flightno"]}}</h5>
+                    <h5 class="time res">{{result["from"]}} &#8594; {{result["to"]}}</h5>
+                    <h6 class="dnt">
+                       <div class="dte"> <div class="no_one">{{result["dept"][0]}}  {{result["dept"][1].split(":00.")[0]}} </div> <span> <i class="fa-solid fa-arrow-down"></i></span> <div class="no_two">{{result["arrival"][0]}}   {{result["arrival"][1].split(":00.")[0]}}</div> </div></h6>
+                    <h5 class="price res">{{result["fare"]}} <i class="fa-sharp fa-solid fa-indian-rupee-sign"></i></h5>
                     <div class="btns">
-                        <button class="btnw">booknow</button>
-                        <button class="adnw">Addnow</button>
+                       
+                        <a href={{result['link']}} target=”_blank”><button class="btnw" > <i class="fa-solid fa-plane-lock"></i> Booknow</button></a>
+                    <form method="POST" action="{{url_for('add_alert')}}">
+                        <button class="adnw" type="submit" name="add_alert_details" value='{{result}}'> <i class="fa-solid fa-bell"></i> Price alert</button>
+                    </form>
                     </div>
-
-            </div>
+                </div>
+               
+                    {% endfor %}
+            {% endblock %}
+        </div>
+            
     </section>
 
+    <script>
+        $( function() {
+          var availableTags = [
+              {% for code in airport_list %}
+                  "{{code}}",
+              {% endfor %}
+          ];
+          $( "#from" ).autocomplete({
+            source: availableTags
+          });
+        } );
+        </script>
+            <script>
+                $( function() {
+                  var availableTags = [
+                      {% for code in airport_list %}
+                          "{{code}}",
+                      {% endfor %}
+                  ];
+                  $( "#to" ).autocomplete({
+                    source: availableTags
+                  });
+                } );
+                </script>
     
+  <script src="/static/index.js"></script>
 </body>
 
 

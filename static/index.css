@@ -96,7 +96,7 @@ button{
 }
 .btns{
     display: flex;
-    font-size: 0.8em !important;
+    font-size: 0.8em;
     
 }
 
@@ -129,7 +129,7 @@ button{
 
 
 .btnw:hover{
-    background-color:#12934e;
+    background-color:tomato;
     
    
 }
@@ -216,22 +216,23 @@ a{
     }
 button{
     padding: 6px 8px;
+   
 }
 }
-@media screen and (max-width: 700px){
+/* @media screen and (max-width: 700px){
 
-.body{
+    .body{
 
-}
-.flight-res button{
-    font-size: 0.7em;
-    padding: 5px 8px;
-}
-button{
-    padding: 5px 8px;
-}
+        background-color: #12934e;
+    }
 
-}
+
+
+
+
+
+
+} */
 @media screen and (max-width: 1100px){
 
     .search_box input{
@@ -239,6 +240,7 @@ button{
         margin-top:20px;
         width: 100%;
     }
+
 
 }
 

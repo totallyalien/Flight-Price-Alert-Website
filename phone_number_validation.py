@@ -6,7 +6,7 @@ class Number_validation:
 
 
     def number_validation(self,number):
-        number=phonenumbers.parse(f"+{number}")
+        number=phonenumbers.parse(str(number))
         return phonenumbers.is_valid_number(number)
     
 

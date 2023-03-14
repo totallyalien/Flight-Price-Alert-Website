@@ -4,17 +4,27 @@ from flight_search import FlightSearch
 from flight_data import alert_data
 from phone_number_validation import Number_validation
 from email_validation import Email_validation
+import time
+from multiprocessing import Process,Value
+from dotenv import load_dotenv,find_dotenv
+import os
+
+load_dotenv(find_dotenv())
+kiwi_api=os.environ.get("KIWI_API_KEY")
+
+
 #aiportlist
 airport_code=DataManager()
 airport_code_diC=airport_code.airportdata_dic()
 
 
 #flightsearch
-search=FlightSearch("yR4u41N6V4InhVEL3Z0EwMfu4ti4lLx-")
+search=FlightSearch(kiwi_api)
 
 
 #mongodb
 db=alert_data()
+
 flight_dic=[]
 
 #number_valid
@@ -22,6 +32,10 @@ check_number=Number_validation()
 
 #email_validation
 check_email=Email_validation()
+
+
+
+
 
 
 app=Flask(__name__)
@@ -50,17 +64,32 @@ def add_number():
   if request.method=="POST":
     number=request.form.get("number")
     email=request.form.get("email")
-    if check_email.email_validation(email) | check_number.number_validation(number):
+    
+    if check_email.email_validation(email) & check_number.number_validation(f"+{number}"):
       flight_dic.append([number,email])
       db.add_alert(flight_dic)
       flight_dic.clear()
+      return render_template("alert.html",message="added successfully")
     else:
-      print("invalid")
+      return render_template("alert.html",message="Enter a valid email or phone number")
   return render_template("alert.html")
   
 
+  #server_price
+def alert():
+  while True:
+      print("func called")
+      x=alert_data()
+      x.change_alert()
+      time.sleep(9)
 
+
+  
 if __name__=="__main__":
+  process=Process(target=alert)
+  print("running")
+  process.start()
   app.run(host="0.0.0.0", debug=True)
+  process.join()
 
-  # tamizh on the server..
+

@@ -48,6 +48,7 @@ class FlightSearch:
         current_data=self.rate(from_place=from_place,to_place=to_place,fromdate=date)
         for details in current_data:
             if details["flightno"]==flight_no:
-                return details["fare"]
+                print(details["fare"])
+                return [details["fare"],details["link"]]
                 break
         
